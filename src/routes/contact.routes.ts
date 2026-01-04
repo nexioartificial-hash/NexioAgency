@@ -27,7 +27,7 @@ router.post('/', async (req: Request, res: Response) => {
         if (error instanceof z.ZodError) {
             return res.status(400).json({
                 success: false,
-                errors: error.errors.map((err) => ({
+                errors: error.issues.map((err: z.ZodIssue) => ({
                     field: err.path[0],
                     message: err.message,
                 })),
